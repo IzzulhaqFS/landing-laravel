@@ -31,7 +31,8 @@ Route::get('/{slug}', function ($slug) {
  
     return view('index', [
         'list' => $list,
-        'links' => $list->links,
+        'links' => $list->links()->orderBy('created_at', 'desc')->get(), // Order links from newest to oldest
+        // 'links' => $list->links()->orderBy('description', 'asc')->get(), // Order links alphabetically by the link description
         'lists' => LinkList::all()
     ]);
 })->name('link-list');
